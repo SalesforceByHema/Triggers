@@ -1,0 +1,6 @@
+trigger AccountTaskCreation on Account (After insert) {
+	
+    if(Trigger.isAfter && Trigger.isInsert){
+        RelatedTaskHelper.createTask(Trigger.New);
+    }
+}
