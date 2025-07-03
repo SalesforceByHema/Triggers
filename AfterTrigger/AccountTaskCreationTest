@@ -1,0 +1,21 @@
+@isTest
+public class AccountTaskCreationTest {
+
+    @isTest
+    public static void TestData(){
+        Account a=new Account(Name='murty',Industry='Biotechnology');
+        Account b=new Account(Name='subbu');
+        
+        Test.StartTest();
+        insert  new list<Account>{a,b};
+        Test.StopTest();
+      
+       list<Task> Taskswith=[select Subject,whatId from Task where whatId=:a.Id];
+        System.assertEquals(1,Taskswith.size());
+        
+       
+        list<Task> TasksWithout=[select Subject,whatId from Task where whatId=:b.Id];
+        System.assertEquals(0,TasksWithout.size());
+        
+    }
+}
