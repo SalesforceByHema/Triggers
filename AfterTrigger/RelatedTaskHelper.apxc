@@ -1,0 +1,22 @@
+public class RelatedTaskHelper {
+    
+    public static void createTask(list<Account> Accounts){
+        list<Task> Tasks=new list<Task>();
+        for(Account a: Accounts){
+            if(a.industry!=null){
+                Task newTask=new Task();
+                newTask.Subject='Welcome Call';
+                newTask.Status='Not Started';
+                newTask.WhatId=a.id;
+                newTask.OwnerId=a.OwnerId;
+                Tasks.add(newTask);
+            }
+            
+        }
+        if(!Tasks.isEmpty()){
+            insert Tasks;
+        }
+        
+    }
+
+}
