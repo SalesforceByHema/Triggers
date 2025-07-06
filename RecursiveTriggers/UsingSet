@@ -1,0 +1,8 @@
+trigger ContactRecursiveTrigger on Contact (after Update) {
+    
+    if(Trigger.isAfter && Trigger.isUpdate){
+        
+            ContactRecursiveHelper.ContactRecursive(Trigger.New);
+        
+    }
+}
