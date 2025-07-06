@@ -1,0 +1,23 @@
+public class ContactRecursiveHelper {
+	public static set<id> ExecutedRecords=new set<id>();
+    
+    
+    public static void ContactRecursive(List<Contact> Contacts){
+        list<contact> ContactIds=new list<contact>();
+        
+        
+        for(Contact c:Contacts){
+            if(!ExecutedRecords.contains(c.Id)){
+                ExecutedRecords.add(c.id);
+            
+                Contact con=new Contact(
+                    Id=c.Id,
+                OtherPhone='9132385016');
+                ContactIds.add(con);
+            }
+            
+        }
+        update ContactIds;
+        
+    }
+}
