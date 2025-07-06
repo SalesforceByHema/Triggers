@@ -1,0 +1,20 @@
+public class ContactRecursiveHelper {
+	public static boolean isFirstTime=true;
+    
+    
+    public static void ContactRecursive(List<Contact> Contacts){
+        list<contact> ContactIds=new list<contact>();
+        isFirstTime=false;
+        
+        for(Contact c:Contacts){
+            
+                Contact con=new Contact(
+                    Id=c.Id,
+                OtherPhone='9132385016');
+                ContactIds.add(con);
+            
+        }
+        update ContactIds;
+        
+    }
+}
