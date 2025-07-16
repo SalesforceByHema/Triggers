@@ -1,0 +1,7 @@
+trigger OpportunityEmail on Opportunity (After insert) {
+    
+    if(Trigger.isAfter && Trigger.isInsert){
+        OpportunityEmailHelper.emailAndTask(Trigger.New);
+    }
+
+}
