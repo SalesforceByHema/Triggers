@@ -1,0 +1,44 @@
+public class OpportunityEmailHelper {
+
+    public static void emailAndTask(list<Opportunity> Opportunities){
+        list<Task> Tasks=new list<Task>();
+        set<Id> HighvalueOppIds=new set<id>();
+        list<Messaging.SingleEmailMessage> Mails=new list<Messaging.SingleEmailMessage>();
+        
+        for(Opportunity p:Opportunities){
+            if(p.amount>10000){
+                HighvalueOppIds.add(p.Id);
+            }
+        }
+        
+        Map<id,Opportunity> OppMap=new Map<Id,Opportunity>([select id,Accountid,name,OwnerId,Owner.email 
+                                                           from Opportunity where id IN:HighvalueOppIds]);
+        
+        for(id Oppid:OppMap.keySet()){
+            Opportunity opp=OppMap.get(Oppid); 
+            
+            if(opp.Owner.email!=null){
+                Messaging.SingleEmailMessage mail=new Messaging.SingleEmailMessage();
+                mail.setToAddresses(new String[]{opp.Owner.email});
+                System.debug('EMAIL: ' + opp.Owner.Email);
+                mail.setSubject('helo welcome');
+                mail.setPlainTextBody('this is an high priority opportunity');
+                Mails.add(mail);
+            }
+            Task t=new Task();
+            t.Subject='High Opportunity';
+            t.WhatId=opp.Id;
+            t.OwnerId=opp.OwnerId;
+            Tasks.add(t);
+            
+        }
+        if(!Mails.isEmpty()){
+            Messaging.sendEmail(Mails);
+            System.debug(Mails);
+        }
+        if(!Tasks.isEmpty()){
+            insert Tasks;
+        }
+        
+    }
+}
